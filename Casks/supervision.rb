@@ -1,6 +1,6 @@
 cask "supervision" do
-  version "0.1.0"
-  sha256 "68a87b2492a26bcfdbea9ff99ec9e7673f70c014b2e0436c0d78aa1b39260163"
+  version "0.2.0"
+  sha256 "bcf93928ba4160e0109ecf8b0cd2af7e21805968bafb453e097c05783ff4ab92"
 
   url "https://github.com/johnliu/supervision/releases/download/v#{version}/stable-macos-arm64-Supervision.dmg"
   name "Supervision"
@@ -12,6 +12,10 @@ cask "supervision" do
   depends_on arch: :arm64
 
   app "Supervision.app"
+
+  # Put the `supervision` CLI on PATH. It ships inside the bundle (see
+  # electrobun.config.ts `copy`); Homebrew symlinks it into its bin directory.
+  binary "#{appdir}/Supervision.app/Contents/Resources/app/supervision"
 
   zap trash: [
     "~/.supervision",
